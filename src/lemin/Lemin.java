@@ -1,22 +1,23 @@
 package lemin;
 
-import java.util.regex.*;
+import java.util.*;
 
 class Lemin
 {
     public static void main(String []args)
     {
-        // String s = Room.extractName("ROOM 4 5", 0);
-        // System.out.println("|"+s+"|");
-        // s = "lol-kek";
-        // String lOne = Room.extractName(s, 1);
-        // String lTwo = Room.extractName(s, 2);
-        // System.out.println("| "+lOne + " | " + lTwo+" |");
-        String s = "room-man";
-        Pattern patternRoom = Pattern.compile("(?<=([-]))(\\w+)");
-        Matcher matcher = patternRoom.matcher(s);
-        matcher.find();
-        String ss = matcher.group(0);
-        System.out.println("|"+ss+"|");
+        Farm antFarm = new Farm();
+        AddInput addInput = new AddInput();
+        addInput.read();
+        antFarm.print(1);
+        // Scanner sc = new Scanner(System.in);
+        // while (sc.hasNextLine())
+        // {
+        //     String s = sc.nextLine();
+        //     // System.out.println(s);
+        //     int type = val.validateAs(s);
+        //     AddInput.add(type, s);
+        // }
+        // sc.close();
     }
 }

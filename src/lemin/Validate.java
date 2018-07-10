@@ -12,7 +12,7 @@ class Validate
             return 2;
         if (isCommand(s))
             return 3;
-        if (isCommand(s))
+        if (isComment(s))
             return 4;
         return 0;
     }
@@ -21,8 +21,8 @@ class Validate
         if (Pattern.matches("^\\w+[ ]\\d+[ ]\\d+$", s))
         {
             String rName = Room.extractName(s, 0);
-            if (!Room.findRoomByName(rName)) 
-                return true;    
+            if (!Room.isRoomInList(rName)) 
+                return true;  
         }
         return false;
     }
@@ -44,7 +44,7 @@ class Validate
         {
             String nameOne = Room.extractName(s, 1);
             String nameTwo = Room.extractName(s, 2);
-            if (Room.findRoomByName(nameOne) && Room.findRoomByName(nameTwo))
+            if (Room.isRoomInList(nameOne) && Room.isRoomInList(nameTwo))
                 return true;
         }
         return false;

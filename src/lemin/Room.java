@@ -17,12 +17,19 @@ class Room
     public String toString() {
         return name;
     }
-    static boolean findRoomByName(String s)
+    static boolean isRoomInList(String s)
     {
         for (Room r : Farm.roomList)
             if (r.name.equals(s))
                 return true;
         return false;
+    }
+    static Room findRoomByName(String s)
+    {
+        for (Room r : Farm.roomList)
+            if (r.name.equals(s))
+                return r;
+        return null;
     }
     static String extractName(String s, int link)
     {
