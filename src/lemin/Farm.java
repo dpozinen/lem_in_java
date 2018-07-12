@@ -31,12 +31,8 @@ class Farm
             {
                 String roomOne = rList.get(0).name;
                 System.out.println("Links for room: " + roomOne);
-                int i = 1;
-                while (i < rList.size())
-                {
-                    System.out.println(roomOne + "-" + rList.get(i));
-                    i++;
-                }
+                for (Room r : rList)
+                    System.out.println(roomOne + "-" + r);    
             }
 
     }
