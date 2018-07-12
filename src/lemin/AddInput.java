@@ -1,29 +1,40 @@
 package lemin;
 
 import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 class AddInput
 {
     void read()
     {
-        Scanner     sc = new Scanner(System.in);
-        Validate    val = new Validate();
-        
-        if (sc.hasNextInt())
-            Farm.ants = sc.nextInt();
-        else
-        {
-            sc.close();
-            return ;
+        try {
+            File        file = new File("S:\\Code\\Lem_in\\src\\lemin\\test.txt");
+            Scanner     sc = new Scanner(file);
+            Validate    val = new Validate();
+            // Scanner     sc = new Scanner(System.in);
+            
+            if (sc.hasNextInt())
+                Farm.ants = sc.nextInt();
+            else
+            {
+                sc.close();
+                return ;
+            }
+            sc.nextLine();
+            while (sc.hasNextLine())
+            {
+                String s = sc.nextLine();
+                int type = val.validateAs(s);
+                if (type == 0)
+                    break ;
+                add(type, s, sc);
+            }
         }
-        sc.nextLine();
-        while (sc.hasNextLine())
+        catch (FileNotFoundException f)
         {
-            String s = sc.nextLine();
-            int type = val.validateAs(s);
-            if (type == 0)
-                break ;
-            add(type, s, sc);
+            System.out.println("File doesnt exist");
         }
     }
     static void add(int type, String s, Scanner sc)
@@ -46,29 +57,27 @@ class AddInput
     {
         String  roomOne = Room.extractName(s, 1);
         String  roomTwo = Room.extractName(s, 2);
-        Boolean found = false;
+        Room    r;
 
+        if (Farm.linkList.size() == 0)
+            Farm.fillLinkList();
         for (ArrayList <Room> rlist : Farm.linkList)
         {
-            if (rlist.get(0).name.equals(roomOne))
-            {
-                rlist.add(Room.findRoomByName(roomTwo));
-                found = true;
-            }
-        }
-        if (found == false)
-        {
-            ArrayList <Room> newRoom = new ArrayList <Room>();
-            newRoom.add(Room.findRoomByName(roomOne));
-            newRoom.add(Room.findRoomByName(roomTwo));
-            Farm.linkList.add(newRoom);
+            r = rlist.get(0);
+            int rNum = 0;
+            if (r.name.equals(roomOne))
+                rNum = 1;
+            if (r.name.equals(roomTwo))
+                rNum = 2;
+            if (rNum > 0)
+                rlist.add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
         }
     }
     static void addCommand(String s, int flag, Scanner sc)
     {
         String  roomLine = sc.nextLine();
         Validate val = new Validate();
-        System.out.println("|"+roomLine+"|");
+
         if (val.validateAs(roomLine) == 1)
             addRoom(roomLine);
         else
