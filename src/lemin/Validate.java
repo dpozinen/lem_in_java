@@ -10,9 +10,9 @@ class Validate
             return 1;
         if (isLink(s))
             return 2;
-        if (isCommand(s))
+        if (isStart(s))
             return 3;
-        if (isComment(s))
+        if (isEnd(s))
             return 4;
         return 0;
     }
@@ -22,13 +22,19 @@ class Validate
         {
             String rName = Room.extractName(s, 0);
             if (!Room.isRoomInList(rName)) 
-                return true;  
+                return true;
         }
         return false;
     }
-    boolean isCommand(String s)
+    boolean isStart(String s)
     {
-        if (Pattern.matches("##start", s) || Pattern.matches("##end", s))
+        if (Pattern.matches("##start", s))
+           return true;
+        return false;
+    }
+    boolean isEnd(String s)
+    {
+        if (Pattern.matches("##end", s))
            return true;
         return false;
     }

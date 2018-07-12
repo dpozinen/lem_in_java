@@ -19,6 +19,8 @@ class Farm
     {
         if (ants != 0)
             System.out.println("Ants count: "+ ants);        
+        System.out.println("Start: "+ start);        
+        System.out.println("End: "+ end);         
         if (what <= 1)
             for (Room r : roomList)
                 System.out.println("Room name: "+r.name);

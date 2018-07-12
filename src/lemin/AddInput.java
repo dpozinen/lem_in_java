@@ -23,25 +23,22 @@ class AddInput
             int type = val.validateAs(s);
             if (type == 0)
                 break ;
-            add(type, s);
+            add(type, s, sc);
         }
-        sc.close();
     }
-    static void add(int type, String s)
+    static void add(int type, String s, Scanner sc)
     {
         if (type == 1)
             addRoom(s);
-         if (type == 2)
+        if (type == 2)
             addLink(s);
-        // if (type == 3)
-            // addCommand(s);
-        /*if (type == 4)
-            addComment(s);  */  
+        if (type == 3 || type == 4)
+            addCommand(s, type, sc);
     }
     static void addRoom(String s)
     {
         String roomName = Room.extractName(s, 0);
-        int id = Farm.roomList.size(); 
+        int id = Farm.roomList.size();
         Room room = new Room(roomName, id);
         Farm.roomList.add(room);
     }
@@ -67,19 +64,19 @@ class AddInput
             Farm.linkList.add(newRoom);
         }
     }
-    static void addCommand(String s, int flag)
+    static void addCommand(String s, int flag, Scanner sc)
     {
-        Scanner sc = new Scanner(System.in);
         String  roomLine = sc.nextLine();
         Validate val = new Validate();
-        
+        System.out.println("|"+roomLine+"|");
         if (val.validateAs(roomLine) == 1)
-            addRoom(s);
-        if (flag == 0) //start
+            addRoom(roomLine);
+        else
+            return ;
+        if (flag == 3) //start
             Farm.start = Farm.roomList.size() - 1;
-        if (flag == 1) // end
-            Farm.start = Farm.roomList.size() - 1;
-        sc.close();
+        if (flag == 4) // end
+            Farm.end = Farm.roomList.size() - 1;
         // if (flag == 2)
             // read next int as number of max sets
     }
