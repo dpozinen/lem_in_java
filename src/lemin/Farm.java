@@ -21,10 +21,24 @@ class Farm
             System.out.println("Ants count: "+ ants);        
         System.out.println("Start: "+ start);        
         System.out.println("End: "+ end);         
+        // print room list
         if (what <= 1)
             for (Room r : roomList)
                 System.out.println("Room name: "+r.name);
-        // if (what < 2)
+        // print link list
+        if (what <= 2)
+            for (ArrayList <Room> rList : linkList)
+            {
+                String roomOne = rList.get(0).name;
+                System.out.println("Links for room: " + roomOne);
+                int i = 1;
+                while (i < rList.size())
+                {
+                    System.out.println(roomOne + "-" + rList.get(i));
+                    i++;
+                }
+            }
+
     }
     
 }
