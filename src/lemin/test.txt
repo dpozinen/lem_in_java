@@ -1,0 +1,17 @@
+78
+a 0 0
+b 1 1
+c 3 3
+d 6 6
+##end
+e 0 0
+f 8 8
+h 8 8
+##start
+i 9 9
+a-b
+a-c
+a-d
+a-h
+f-d
+c-d
