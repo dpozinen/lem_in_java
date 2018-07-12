@@ -24,4 +24,8 @@ class Path
             System.out.print(i.next());
         }
     }
+    void findAllPaths()
+    {
+        
+    }
 }

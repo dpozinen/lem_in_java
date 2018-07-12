@@ -9,6 +9,6 @@ class Lemin
         Farm antFarm = new Farm();
         AddInput addInput = new AddInput();
         addInput.read();
-        antFarm.print(1);
+        antFarm.print(2);
     }
 }

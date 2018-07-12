@@ -43,6 +43,7 @@ class Room
         else
         {
             Pattern pattern;
+
             if (link == 1)
                 pattern = Pattern.compile("(\\w+)(?=([-]))");
             else
