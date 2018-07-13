@@ -10,11 +10,11 @@ class AddInput
     void read()
     {
         try {
-            File        file = new File("S:\\Code\\Lem_in\\src\\lemin\\test.txt");
+            File        file = new File("S:\\Code\\Lem_in\\test.txt");
             Scanner     sc = new Scanner(file);
             Validate    val = new Validate();
             // Scanner     sc = new Scanner(System.in);
-            
+
             if (sc.hasNextInt())
                 Farm.ants = sc.nextInt();
             else
@@ -35,6 +35,7 @@ class AddInput
         catch (FileNotFoundException f)
         {
             System.out.println("File doesnt exist");
+            System.exit(0);
         }
     }
     static void add(int type, String s, Scanner sc)

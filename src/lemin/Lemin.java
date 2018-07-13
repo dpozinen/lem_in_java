@@ -9,6 +9,8 @@ class Lemin
         Farm antFarm = new Farm();
         AddInput addInput = new AddInput();
         addInput.read();
-        antFarm.print(2);
+        Path.findAllPaths();
+        Collections.sort(Farm.pathList, Path.bySizeAsc);
+        antFarm.print(3);
     }
 }

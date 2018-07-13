@@ -37,9 +37,13 @@ class Farm
                     System.out.println();
                 }
             }
-        if (what >= 3) // print path list 
+        if (what >= 3) // print path list
             for (Path p : pathList)
+            {
+                System.out.printf("path with id %4d : ", pathList.indexOf(p));
                 p.print();
+                System.out.println();
+            }
     }
     static void fillLinkList()
     {

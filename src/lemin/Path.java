@@ -1,7 +1,6 @@
-package lemin;  
+package lemin;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 class Path
 {
@@ -9,7 +8,7 @@ class Path
     int length;
     ArrayList<Room> pathRooms;
 
-    Path (int id, int length, ArrayList<Room> pathRooms)
+    Path (int length, ArrayList<Room> pathRooms)
     {
         this.id = id;
         this.length = length;
@@ -17,15 +16,52 @@ class Path
     }
     void print()
     {
-        System.out.println("path with id: " + id);
-        Iterator<Room> i = pathRooms.iterator();
-        while (i.hasNext())
+        for (Room r : pathRooms)
         {
-            System.out.print(i.next());
+            System.out.print(r);
+            if (pathRooms.indexOf(r) != length - 1)
+                System.out.print("-");
+        }
+        System.out.println();
+    }
+    public static Comparator<Path> bySizeAsc = new Comparator<Path>()
+    {
+        public int compare(Path one, Path two)
+        {
+            return one.length - two.length;
+        }
+    };
+    static void findAllPaths() // DFS
+    {
+        ArrayList <Room> curPath = new ArrayList<>();
+        Room curRoom = Farm.roomList.get(Farm.start);
+        curPath.add(curRoom);
+        findPath(curRoom, curPath);
+    }
+    static void findPath(Room curRoom, ArrayList <Room> curPath)
+    {
+        if (curRoom.index == Farm.end)
+        {
+            ArrayList <Room> fullPath = new ArrayList<>(curPath);
+            Farm.pathList.add(new Path(curPath.size(), fullPath));
+            return ;
+        }
+        int i = 0;
+        while (Farm.linkList.get(i).get(0) != curRoom)
+            i++;
+        ArrayList <Room> curRoomLinks = Farm.linkList.get(i);
+        for (Room r : curRoomLinks)
+        {
+            if (!curPath.contains(r))
+            {
+                curPath.add(r);
+                findPath(r, curPath);
+                curPath.remove(r);
+            }
         }
     }
-    void findAllPaths()
+    void chooseBestPathSet()
     {
-        
+        Collections.sort(Farm.pathList, Path.bySizeAsc);
     }
 }
