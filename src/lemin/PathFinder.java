@@ -21,9 +21,9 @@ class  PathFinder
             return ;
         }
         int i = 0;
-        while (Farm.linkList.get(i).get(0) != curRoom)
+        while (Farm.linkList.get(i).mainRoom != curRoom)
             i++;
-        ArrayList <Room> curRoomLinks = Farm.linkList.get(i);
+        ArrayList <Room> curRoomLinks = Farm.linkList.get(i).links;
         for (Room r : curRoomLinks)
         {
             if (!curPath.contains(r))

@@ -11,7 +11,6 @@ class Path
 
     Path (int length, ArrayList<Room> pathRooms)
     {
-        this.id = id;
         this.length = length;
         this.pathRooms = pathRooms;
     }

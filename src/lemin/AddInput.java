@@ -1,6 +1,5 @@
 package lemin;
 
-import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -62,16 +61,16 @@ class AddInput
 
         if (Farm.linkList.size() == 0)
             Farm.fillLinkList();
-        for (ArrayList <Room> rlist : Farm.linkList)
+        for (Link l : Farm.linkList)
         {
-            r = rlist.get(0);
+            r = l.mainRoom;
             int rNum = 0;
             if (r.name.equals(roomOne))
                 rNum = 1;
             if (r.name.equals(roomTwo))
                 rNum = 2;
             if (rNum > 0)
-                rlist.add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
+                l.links.add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
         }
     }
     static void addCommand(String s, int flag, Scanner sc)
