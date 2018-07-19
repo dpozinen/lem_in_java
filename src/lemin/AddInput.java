@@ -28,32 +28,36 @@ class AddInput
                 int type = val.validateAs(s);
                 if (type == 0)
                     break ;
-                add(type, s, sc);
+                if (!add(type, s, sc))
+                    break ;
             }
+            sc.close();
         }
         catch (FileNotFoundException f)
         {
-            System.out.println("File doesnt exist");
+            System.out.println("File doesn't exist");
             System.exit(0);
         }
     }
-    static void add(int type, String s, Scanner sc)
+    boolean add(int type, String s, Scanner sc)
     {
         if (type == 1)
             addRoom(s);
         if (type == 2)
             addLink(s);
         if (type == 3 || type == 4)
-            addCommand(s, type, sc);
+            if (!addCommand(s, type, sc))
+                return false;
+        return true;
     }
-    static void addRoom(String s)
+    void addRoom(String s)
     {
         String roomName = Room.extractName(s, 0);
         int id = Farm.roomList.size();
         Room room = new Room(roomName, id);
         Farm.roomList.add(room);
     }
-    static void addLink(String s)
+    void addLink(String s)
     {
         String  roomOne = Room.extractName(s, 1);
         String  roomTwo = Room.extractName(s, 2);
@@ -73,7 +77,7 @@ class AddInput
                 l.links.add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
         }
     }
-    static void addCommand(String s, int flag, Scanner sc)
+    boolean addCommand(String s, int flag, Scanner sc)
     {
         String  roomLine = sc.nextLine();
         Validate val = new Validate();
@@ -81,12 +85,13 @@ class AddInput
         if (val.validateAs(roomLine) == 1)
             addRoom(roomLine);
         else
-            return ;
+            return false;
         if (flag == 3) //start
             Farm.start = Farm.roomList.size() - 1;
         if (flag == 4) // end
             Farm.end = Farm.roomList.size() - 1;
         // if (flag == 2)
             // read next int as number of max sets
+        return true;
     }
 }
