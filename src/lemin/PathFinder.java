@@ -40,14 +40,24 @@ class  PathFinder
         // if (Farm.quickFind)
             quickFind();
         // else
-            // fullFind();
+        // {
+        //     ArrayList <Set> setsFound = new ArrayList<>();
+        //     int curSetSize = 0;
+
+        //     while (fullFind(curSetSize, setsFound))
+        //         curSetSize++;
+        // }
     }
-    void fullFind()
+    boolean fullFind(int curSetSize, ArrayList <Set> setsFound)
     {
         Set curSet = new Set();
+        ArrayList <Path> curPaths = new ArrayList<>(curSetSize);
         ArrayList <Room> roomsInCurSet = new ArrayList<>();
 
-        // int
+        // think through fullFind, possible restructure to LinkList
+        // moving through the list using next instead of get(ind);
+        // although if it has a ind-adress table - doesnt matter
+        return true;
     }
     void quickFind()
     {
@@ -68,7 +78,8 @@ class  PathFinder
 
         for (Path p : curSet.setPaths)
             for (Room r : p.pathRooms)
-                roomsInCurSet.add(r);
+                if (!roomsInCurSet.contains(r))
+                    roomsInCurSet.add(r);
         newSetPath = getNotIntersect(newSetPath, roomsInCurSet, pathIter);
         if (newSetPath == null)
             return ;

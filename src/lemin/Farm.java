@@ -6,7 +6,7 @@ class Farm
 {
     static int       ants;
     int              paths;
-    int              nodes;
+    int              maxPaths;
     String           inputString;
     static int       start;
     static int       end;
