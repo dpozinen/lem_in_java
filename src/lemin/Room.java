@@ -5,13 +5,13 @@ import java.util.regex.*;
 class Room
 {
     int     antsInRoom;
-    int     index;
+    int     id;
     String  name;
 
-    Room(String name, int index)
+    Room(String name, int id)
     {
         this.name = name;
-        this.index = index;
+        this.id = id;
     }
     @Override
     public String toString() {

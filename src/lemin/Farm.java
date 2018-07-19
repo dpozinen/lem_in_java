@@ -10,6 +10,7 @@ class Farm
     String           inputString;
     static int       start;
     static int       end;
+    static boolean   quickFind = false;
     static ArrayList <Room> roomList = new ArrayList<>();
     static ArrayList <Link> linkList = new ArrayList<>();
     static ArrayList <Path> pathList = new ArrayList<>();

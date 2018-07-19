@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class Link
 {
-    int  nOfLinks;
+    // int  nOfLinks;
     Room mainRoom;
     ArrayList <Room> links;
 

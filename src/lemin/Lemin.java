@@ -1,6 +1,6 @@
 package lemin;
 
-import java.util.*;
+// import java.util.*;
 
 class Lemin
 {
@@ -9,8 +9,9 @@ class Lemin
         Farm antFarm = new Farm();
         AddInput addInput = new AddInput();
         addInput.read();
-        PathFinder.findAllPaths();
-        Collections.sort(Farm.pathList, Path.bySizeAsc);
-        antFarm.print(3);
+        PathFinder pathFinder = new PathFinder();
+        pathFinder.findAllPaths();
+        pathFinder.chooseBestPathSet();
+        antFarm.print(0);
     }
 }
