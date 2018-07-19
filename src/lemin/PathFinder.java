@@ -40,32 +40,42 @@ class  PathFinder
         // if (Farm.quickFind)
             quickFind();
         // else
-        //     fullFind();
+            // fullFind();
+    }
+    void fullFind()
+    {
+        Set curSet = new Set();
+        ArrayList <Room> roomsInCurSet = new ArrayList<>();
+
+        // int
     }
     void quickFind()
     {
-        ArrayList <Path> curPathSet = new ArrayList<>();
+        Set curSet = new Set();
+        ArrayList <Set> foundSets = new ArrayList<>();
         ArrayList <Room> roomsInCurSet = new ArrayList<>();
 
         Collections.sort(Farm.pathList, Path.bySizeAsc);
-        curPathSet.add(Farm.pathList.get(0));
+        curSet.setPaths.add(Farm.pathList.get(0));
         Iterator <Path> pathIter = Farm.pathList.iterator();
-        findNextMin(curPathSet, roomsInCurSet, pathIter);
-        for (Path p : curPathSet)
-            p.print();
+        findNextMin(curSet, roomsInCurSet, pathIter, foundSets);
+        Set bestSet = Collections.min(foundSets, Set.byEfficiency);
+        bestSet.print();
     }
-    void findNextMin(ArrayList <Path> curPathSet,  ArrayList <Room> roomsInCurSet, Iterator <Path> pathIter)
+    void findNextMin(Set curSet,  ArrayList <Room> roomsInCurSet, Iterator <Path> pathIter, ArrayList <Set> foundSets)
     {
         Path newSetPath = null;
 
-        for (Path p : curPathSet)
+        for (Path p : curSet.setPaths)
             for (Room r : p.pathRooms)
                 roomsInCurSet.add(r);
         newSetPath = getNotIntersect(newSetPath, roomsInCurSet, pathIter);
         if (newSetPath == null)
             return ;
-        curPathSet.add(newSetPath);
-        findNextMin(curPathSet, roomsInCurSet, pathIter );
+        curSet.setPaths.add(newSetPath);
+        curSet.countEfficiency();
+        foundSets.add(curSet);
+        findNextMin(curSet, roomsInCurSet, pathIter, foundSets);
     }
     Path getNotIntersect(Path newSetPath, ArrayList <Room> roomsInCurSet, Iterator <Path> pathIter)
     {

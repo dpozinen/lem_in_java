@@ -21,7 +21,7 @@ class Validate
         if (Pattern.matches("^\\w+[ ]\\d+[ ]\\d+$", s))
         {
             String rName = Room.extractName(s, 0);
-            if (!Room.isRoomInList(rName)) 
+            if (!Room.isRoomInList(rName))
                 return true;
         }
         return false;

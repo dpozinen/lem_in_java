@@ -18,8 +18,8 @@ class Farm
     void print(int what)
     {
         System.out.println("Ants count: "+ ants);
-        System.out.println("Start: "+ start);
-        System.out.println("End: "+ end);
+        System.out.println("Start: "+ roomList.get(start).name);
+        System.out.println("End: "+ roomList.get(end).name);
 
         if (what >= 1) // print room list
             for (Room r : roomList)
