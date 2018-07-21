@@ -3,6 +3,7 @@ package lemin;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.lang.Math;
 
 class  PathFinder
 {
@@ -47,17 +48,6 @@ class  PathFinder
         //     while (fullFind(curSetSize, setsFound))
         //         curSetSize++;
         // }
-    }
-    boolean fullFind(int curSetSize, ArrayList <Set> setsFound)
-    {
-        Set curSet = new Set();
-        ArrayList <Path> curPaths = new ArrayList<>(curSetSize);
-        ArrayList <Room> roomsInCurSet = new ArrayList<>();
-
-        // think through fullFind, possible restructure to LinkList
-        // moving through the list using next instead of get(ind);
-        // although if it has a ind-adress table - doesnt matter
-        return true;
     }
     void quickFind()
     {

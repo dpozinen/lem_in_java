@@ -7,6 +7,7 @@ class Set
 {
     ArrayList <Path> setPaths = new ArrayList<>();
     private int efficiency;
+    private int lenght;
 
     void    print()
     {
