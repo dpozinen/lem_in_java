@@ -13,16 +13,50 @@ class Set
     {
         for (Path p : setPaths)
             p.print();
+        for (int i = 0; i < 10; i++)
+            System.out.print('-');
+        System.out.println();
+    }
+    public Set(){
+    }
+    public Set(Set other)
+    {
+        this.length = other.length;
+        this.efficiency = other.efficiency;
+        this.setPaths = other.setPaths;
+    }
+    public int  getLength()
+    {
+        return length;
+    }
+    int     pathsIntersect()
+    {
+        ArrayList <Room> roomsInCurSet = new ArrayList<>();
+
+        for (Path p : setPaths)
+            for (Room r : p.pathRooms)
+                if (r.id != Farm.start && r.id != Farm.end)
+                    if (roomsInCurSet.contains(r))
+                        return setPaths.indexOf(p);
+                    else
+                        roomsInCurSet.add(r);
+        return -1;
     }
     Set     makeByPathIds(int[] pathIds, Set curSet)
     {
-        curSet.setPaths.clear();
-        for (int i : pathIds)
-        {
-            Path p = Farm.pathList.get(i);
-            curSet.setPaths.add(p);
+        try {
+            curSet.setPaths.clear();
+            for (int i : pathIds)
+            {
+                Path p = Farm.pathList.get(i);
+                curSet.setPaths.add(p);
+            }
+            return curSet;
         }
-        return curSet;
+        catch (IndexOutOfBoundsException ioof)
+        {
+            return null;
+        }
     }
     void    countEfficiency()
     {

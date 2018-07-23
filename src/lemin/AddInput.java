@@ -9,7 +9,7 @@ class AddInput
     void read()
     {
         try {
-            File        file = new File("S:\\Code\\Lem_in\\tests\\medTest.txt");
+            File        file = new File("S:\\Code\\Lem_in\\tests\\test.txt");
             Scanner     sc = new Scanner(file);
             Validate    val = new Validate();
             // Scanner     sc = new Scanner(System.in);

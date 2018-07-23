@@ -39,14 +39,18 @@ class  PathFinder
     void chooseBestPathSet()
     {
         // if (Farm.quickFind)
-            quickFind();
+            // quickFind();
         // else
         // {
-        //     ArrayList <Set> setsFound = new ArrayList<>();
-        //     int curSetSize = 0;
+            ArrayList <Set> setsFound = new ArrayList<>();
+            int curSetSize = 1;
+            FullPathFinder fullPathFinder = new FullPathFinder();
 
-        //     while (fullFind(curSetSize, setsFound))
-        //         curSetSize++;
+            while (fullPathFinder.fullFind(curSetSize, setsFound))
+                curSetSize++;
+            Collections.sort(setsFound, Set.byEfficiency);
+            for (Set s : setsFound)
+                s.print();
         // }
     }
     void quickFind()
