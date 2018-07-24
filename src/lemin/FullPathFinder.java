@@ -22,10 +22,10 @@ class FullPathFinder
         System.out.println(maxCombSum);
         while (IntStream.of(pathIds).sum() < maxCombSum - 1)
         {
-            bestSet = new Set(curSet);
+            bestSet.copySet(curSet);
             while (bestSet.getLength() <= curSet.getLength()) // sum of generatedSet is bigger than bestSet
             {
-                if (!getNextPathIDs(pathIds, curSet))
+                if (!checkIds(pathIds) || !getNextPathIDs(pathIds, curSet))
                     break ;
             }
         }
@@ -35,10 +35,8 @@ class FullPathFinder
             return false;
         return true;
     }
-
-    boolean     getNextPathIDs(int[] pathIds, Set curSet)
+    boolean     checkIds(int[] pathIds)
     {
-        System.out.println(Arrays.toString(pathIds));
         for (int i = 0; i < pathIds.length; i++) // go through paths
         {
             if (pathIds[i] >= Farm.pathList.size() - 1)
@@ -49,13 +47,20 @@ class FullPathFinder
             else if (i == pathIds.length - 1 && pathIds[i] + 1 < Farm.pathList.size()) // if it`s the last elem
                 pathIds[i]++;
         }
+        return true;
+    }
+    boolean     getNextPathIDs(int[] pathIds, Set curSet)
+    {
+        System.out.println(Arrays.toString(pathIds));
         curSet = curSet.makeByPathIds(pathIds, curSet); // generate Set
         if (curSet == null)
             return false;
-        int i;
-        i = curSet.pathsIntersect(); // check if paths in set intersect and get the path ID that intersects
+        int i = curSet.pathsIntersect(); // check if paths in set intersect and get the path ID that intersects
         if (i >= 0)
+        {
+            orderIds(pathIds, i);
             getNextPathIDs(pathIds, curSet);
+        }
         return true;
     }
     boolean     orderIds(int[] pathIds, int i) // if order at intersect, i = i + 1

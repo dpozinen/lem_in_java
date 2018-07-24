@@ -19,10 +19,10 @@ class Set
     }
     public Set(){
     }
-    public Set(Set other)
+    public void copySet(Set other)
     {
-        this.length = other.length;
         this.efficiency = other.efficiency;
+        this.length = other.length;
         this.setPaths = other.setPaths;
     }
     public int  getLength()
@@ -42,7 +42,7 @@ class Set
                         roomsInCurSet.add(r);
         return -1;
     }
-    Set     makeByPathIds(int[] pathIds, Set curSet)
+    Set     makeByPathIds(int[] pathIds, Set curSet) // TODO: change so that takes only pathIds
     {
         try {
             curSet.setPaths.clear();
