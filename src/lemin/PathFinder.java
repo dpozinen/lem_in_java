@@ -19,7 +19,7 @@ class  PathFinder
         if (curRoom.id == Farm.end)
         {
             ArrayList <Room> fullPath = new ArrayList<>(curPath);
-            Farm.pathList.add(new Path(curPath.size(), fullPath));
+            Farm.pathList.add(new Path(fullPath.size(), fullPath));
             return ;
         }
         int i = 0;
@@ -49,8 +49,13 @@ class  PathFinder
             while (fullPathFinder.fullFind(curSetSize, setsFound))
                 curSetSize++;
             Collections.sort(setsFound, Set.byEfficiency);
+            // for (Path p : Farm.pathList)
+            //     p.print();
             for (Set s : setsFound)
+            {
+                System.out.println(s.getLength());
                 s.print();
+            }
         // }
     }
     void quickFind()

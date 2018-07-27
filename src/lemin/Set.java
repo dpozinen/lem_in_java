@@ -19,11 +19,12 @@ class Set
     }
     public Set(){
     }
-    public void copySet(Set other)
+    public Set(Set other)
     {
         this.efficiency = other.efficiency;
         this.length = other.length;
-        this.setPaths = other.setPaths;
+        for (Path p : other.setPaths)
+            this.setPaths.add(p);
     }
     public int  getLength()
     {
@@ -44,19 +45,14 @@ class Set
     }
     Set     makeByPathIds(int[] pathIds, Set curSet) // TODO: change so that takes only pathIds
     {
-        try {
-            curSet.setPaths.clear();
-            for (int i : pathIds)
-            {
-                Path p = Farm.pathList.get(i);
-                curSet.setPaths.add(p);
-            }
-            return curSet;
-        }
-        catch (IndexOutOfBoundsException ioof)
+        curSet.setPaths.clear();
+        for (int i : pathIds)
         {
-            return null;
+            Path p = Farm.pathList.get(i);
+            curSet.setPaths.add(p);
         }
+        countLength();
+        return curSet;
     }
     void    countEfficiency()
     {

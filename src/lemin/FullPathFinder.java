@@ -9,29 +9,27 @@ class FullPathFinder
     boolean fullFind(int curSetSize, ArrayList <Set> setsFound)
     {
         Set curSet = new Set();
+        Set bestSet = new Set();
         int maxCombSum = 0;
         int[] pathIds = new int[curSetSize];
-        Set bestSet = new Set();
 
         for (int i = 0; i < curSetSize; i++)
             pathIds[i] = i;
-        curSet = curSet.makeByPathIds(pathIds, curSet);
-        bestSet = null;
+        curSet.makeByPathIds(pathIds, curSet);
         for (int i = 0; i < curSetSize; i++)
             maxCombSum += Farm.pathList.size() - i - 1;
-        System.out.println(maxCombSum);
         while (IntStream.of(pathIds).sum() < maxCombSum - 1)
         {
-            bestSet.copySet(curSet);
+            bestSet = new Set(curSet);
             while (bestSet.getLength() <= curSet.getLength()) // sum of generatedSet is bigger than bestSet
             {
-                if (!checkIds(pathIds) || !getNextPathIDs(pathIds, curSet))
+                if (!getNextPathIDs(pathIds, curSet) || !checkIds(pathIds))
                     break ;
             }
         }
-        if (bestSet != null)
+        if (bestSet.pathsIntersect() == -1)
             setsFound.add(bestSet);
-        if (curSetSize == 4)
+        if (curSetSize == 3)
             return false;
         return true;
     }
@@ -51,15 +49,15 @@ class FullPathFinder
     }
     boolean     getNextPathIDs(int[] pathIds, Set curSet)
     {
-        System.out.println(Arrays.toString(pathIds));
         curSet = curSet.makeByPathIds(pathIds, curSet); // generate Set
         if (curSet == null)
             return false;
         int i = curSet.pathsIntersect(); // check if paths in set intersect and get the path ID that intersects
         if (i >= 0)
         {
-            orderIds(pathIds, i);
-            getNextPathIDs(pathIds, curSet);
+            if (!orderIds(pathIds, i + 1))
+                return false;
+            return getNextPathIDs(pathIds, curSet);
         }
         return true;
     }
@@ -74,6 +72,8 @@ class FullPathFinder
         }
         if (pathIds[i - 1] + 1 < Farm.pathList.size())
             pathIds[i - 1]++;
+        else
+            return checkIds(pathIds);
         while (i < pathIds.length)
         {
             if (pathIds[i - 1] + 1 < Farm.pathList.size())
