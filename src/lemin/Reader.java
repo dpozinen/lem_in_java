@@ -45,21 +45,21 @@ class Reader
         while (sc.hasNextLine())
         {
             String s = sc.nextLine();
-            int type = val.validateAs(s);
-            if (type == 0)
+            InputType type = val.validateAs(s);
+            if (type == null)
                 break ;
             if (!add(type, s, sc))
                 break ;
         }
         sc.close();
     }
-    boolean add(int type, String s, Scanner sc)
+    boolean add(InputType type, String s, Scanner sc)
     {
-        if (type == 1)
+        if (type == InputType.ROOM)
             addRoom(s);
-        if (type == 2)
+        if (type == InputType.LINK)
             addLink(s);
-        if (type == 3 || type == 4)
+        if (type == InputType.END || type == InputType.START)
             if (!addCommand(s, type, sc))
                 return false;
         return true;
@@ -87,20 +87,20 @@ class Reader
                 r.getLinks().add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
         }
     }
-    boolean addCommand(String s, int flag, Scanner sc)
+    boolean addCommand(String s, InputType type, Scanner sc)
     {
         String  roomLine = sc.nextLine();
         Validate val = new Validate();
 
-        if (val.validateAs(roomLine) == 1)
+        if (val.validateAs(roomLine) == InputType.ROOM)
             addRoom(roomLine);
         else
             return false;
-        if (flag == 3) //start
+        if (type == InputType.START)
             Farm.start = Farm.roomList.size() - 1;
-        if (flag == 4) // end
+        if (type == InputType.END)
             Farm.end = Farm.roomList.size() - 1;
-        // if (flag == 2)
+        // if (type == InputType.SETS)
             // read next int as number of max sets
         return true;
     }

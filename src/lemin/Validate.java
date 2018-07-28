@@ -4,17 +4,17 @@ import java.util.regex.*;
 
 class Validate
 {
-    int     validateAs(String s)
+    InputType     validateAs(String s)
     {
         if (isRoom(s))
-            return 1;
+            return InputType.ROOM;
         if (isLink(s))
-            return 2;
+            return InputType.LINK;
         if (isStart(s))
-            return 3;
+            return InputType.START;
         if (isEnd(s))
-            return 4;
-        return 0;
+            return InputType.END;
+        return null;
     }
     boolean isRoom(String s)
     {
