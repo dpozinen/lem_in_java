@@ -6,38 +6,52 @@ import java.util.Scanner;
 
 class Reader
 {
-    void readInput()
+    Scanner readFile()
     {
-        try {
-            File        file = new File("S:\\Code\\Lem_in\\tests\\test.txt");
-            Scanner     sc = new Scanner(file);
-            Validate    val = new Validate();
-            // Scanner     sc = new Scanner(System.in);
+        System.out.println("Enter File Name: ");
 
-            if (sc.hasNextInt())
-                Farm.ants = sc.nextInt();
-            else
-            {
-                sc.close();
-                return ;
-            }
-            sc.nextLine();
-            while (sc.hasNextLine())
-            {
-                String s = sc.nextLine();
-                int type = val.validateAs(s);
-                if (type == 0)
-                    break ;
-                if (!add(type, s, sc))
-                    break ;
-            }
+        Scanner     sc = new Scanner(System.in);
+        String  fileName = sc.next();
+        try{
+            File    file = new File("S:\\Code\\Lem_in\\tests\\"+fileName+".txt");
+            Scanner fsc = new Scanner(file);
             sc.close();
+            return fsc;
         }
         catch (FileNotFoundException f)
         {
-            System.out.println("File doesn't exist");
-            System.exit(0);
+            System.out.println("File doesn't exist. Continue Y/N?");
+            sc.nextLine();
+            if (sc.nextLine().equals("Y"))
+                return readFile();
+            else
+                System.exit(0);
         }
+        return sc;
+    }
+    void readInput()
+    {
+        Validate    val = new Validate();
+        Scanner     sc = readFile();
+
+        if (sc.hasNextInt())
+            Farm.ants = sc.nextInt();
+        else
+        {
+            sc.close();
+            return ;
+        }
+        sc.nextLine();
+        while (sc.hasNextLine())
+        {
+            String s = sc.nextLine();
+            int type = val.validateAs(s);
+            if (type == 0)
+                break ;
+            if (!add(type, s, sc))
+                break ;
+        }
+        sc.close();
     }
     boolean add(int type, String s, Scanner sc)
     {

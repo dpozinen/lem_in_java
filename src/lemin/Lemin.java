@@ -5,8 +5,8 @@ class Lemin
     public static void main(String []args)
     {
         Farm antFarm = new Farm();
-        Reader addInput = new Reader();
-        addInput.readInput();
+        Reader reader = new Reader();
+        reader.readInput();
         PathFinder pathFinder = new PathFinder();
         pathFinder.findAllPaths();
         SetFinder setFinder = new SetFinder();
