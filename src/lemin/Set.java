@@ -30,7 +30,7 @@ class Set
 
         for (Path p : setPaths)
             for (Room r : p.getPathRooms())
-                if (r.getId() != Farm.start && r.getId() != Farm.end)
+                if (r != Farm.getStart() && r != Farm.getEnd())
                     if (roomsInCurSet.contains(r))
                         return setPaths.indexOf(p);
                     else
@@ -42,7 +42,7 @@ class Set
         setPaths.clear();
         for (int i : pathIds)
         {
-            Path p = Farm.pathList.get(i);
+            Path p = Farm.getPathList().get(i);
             setPaths.add(p);
         }
         countLength();

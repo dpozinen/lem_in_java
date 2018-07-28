@@ -11,6 +11,6 @@ class Lemin
         pathFinder.findAllPaths();
         SetFinder setFinder = new SetFinder();
         setFinder.chooseBestPathSet();
-        // antFarm.print(2);
+        antFarm.print(0);
     }
 }

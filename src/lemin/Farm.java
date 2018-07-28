@@ -4,18 +4,20 @@ import java.util.ArrayList;
 
 class Farm
 {
-    static int       ants;
-    static int       start;
-    static int       end;
-    static boolean   quickFind = false;
-    static ArrayList <Room> roomList = new ArrayList<>();
-    static ArrayList <Path> pathList = new ArrayList<>();
+    private static int       ants;
+    private static Room      start;
+    private static Room      end;
+    private static boolean   quickFind = false;
+    private static ArrayList <Room> roomList = new ArrayList<>();
+    private static ArrayList <Path> pathList = new ArrayList<>();
+    private static ArrayList <Set> setsFound;
 
     void print(int what)
     {
+        System.out.println();
         System.out.println("Ants count: "+ ants);
-        System.out.println("Start: "+ roomList.get(start).getName());
-        System.out.println("End: "+ roomList.get(end).getName());
+        System.out.println("Start: "+ Farm.getStart());
+        System.out.println("End: "+ Farm.getEnd());
 
         if (what >= 1) // print room list
             for (Room r : roomList)
@@ -34,5 +36,44 @@ class Farm
                 p.print();
                 System.out.println();
             }
+        System.out.println();
+        for (Set s : setsFound)
+            {
+                System.out.println(s.getLength());
+                s.print();
+            }
+    }
+    public static int getAnts() {
+        return ants;
+    }
+    public static Room getEnd() {
+        return end;
+    }
+    public static ArrayList<Path> getPathList() {
+        return pathList;
+    }
+    public static ArrayList<Room> getRoomList() {
+        return roomList;
+    }
+    public static ArrayList<Set> getSetsFound() {
+        return setsFound;
+    }
+    public static Room getStart() {
+        return start;
+    }
+    public static boolean getQuickFind() {
+        return quickFind;
+    }
+    public static void setStart(Room start) {
+        Farm.start = start;
+    }
+    public static void setEnd(Room end) {
+        Farm.end = end;
+    }
+    public static void setAnts(int ants) {
+        Farm.ants = ants;
+    }
+    public static void setSetsFound(ArrayList<Set> setsFound) {
+        Farm.setsFound = setsFound;
     }
 }

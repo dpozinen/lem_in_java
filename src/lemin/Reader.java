@@ -35,7 +35,7 @@ class Reader
         Scanner     sc = readFile();
 
         if (sc.hasNextInt())
-            Farm.ants = sc.nextInt();
+            Farm.setAnts(sc.nextInt());
         else
         {
             sc.close();
@@ -60,23 +60,22 @@ class Reader
         if (type == InputType.LINK)
             addLink(s);
         if (type == InputType.END || type == InputType.START)
-            if (!addCommand(s, type, sc))
+            if (!addCommand(type, sc))
                 return false;
         return true;
     }
     void addRoom(String s)
     {
         String roomName = Room.extractName(s, 0);
-        int id = Farm.roomList.size();
-        Room room = new Room(roomName, id);
-        Farm.roomList.add(room);
+        Room room = new Room(roomName);
+        Farm.getRoomList().add(room);
     }
     void addLink(String s)
     {
         String  roomOne = Room.extractName(s, 1);
         String  roomTwo = Room.extractName(s, 2);
 
-        for (Room r : Farm.roomList)
+        for (Room r : Farm.getRoomList())
         {
             int rNum = 0;
             if (r.getName().equals(roomOne))
@@ -87,7 +86,7 @@ class Reader
                 r.getLinks().add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
         }
     }
-    boolean addCommand(String s, InputType type, Scanner sc)
+    boolean addCommand(InputType type, Scanner sc)
     {
         String  roomLine = sc.nextLine();
         Validate val = new Validate();
@@ -96,10 +95,11 @@ class Reader
             addRoom(roomLine);
         else
             return false;
+        Room r = Room.findRoomByName(Room.extractName(roomLine, 0));
         if (type == InputType.START)
-            Farm.start = Farm.roomList.size() - 1;
-        if (type == InputType.END)
-            Farm.end = Farm.roomList.size() - 1;
+            Farm.setStart(r);
+        else if (type == InputType.END)
+            Farm.setEnd(r);
         // if (type == InputType.SETS)
             // read next int as number of max sets
         return true;

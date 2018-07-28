@@ -8,7 +8,7 @@ class SetFinder
 {
     void chooseBestPathSet()
     {
-        if (Farm.quickFind)
+        if (Farm.getQuickFind())
             quickFind();
         else
         {
@@ -19,11 +19,7 @@ class SetFinder
             while (fullSetFinder.fullFind(curSetSize, setsFound))
                 curSetSize++;
             Collections.sort(setsFound, Set.byEfficiency);
-            for (Set s : setsFound)
-            {
-                System.out.println(s.getLength());
-                s.print();
-            }
+            Farm.setSetsFound(setsFound);
         }
     }
     void quickFind()
@@ -32,9 +28,9 @@ class SetFinder
         ArrayList <Set> foundSets = new ArrayList<>();
         ArrayList <Room> roomsInCurSet = new ArrayList<>();
 
-        Collections.sort(Farm.pathList, Path.bySizeAsc);
-        curSet.getSetPaths().add(Farm.pathList.get(0));
-        Iterator <Path> pathIter = Farm.pathList.iterator();
+        Collections.sort(Farm.getPathList(), Path.bySizeAsc);
+        curSet.getSetPaths().add(Farm.getPathList().get(0));
+        Iterator <Path> pathIter = Farm.getPathList().iterator();
         findNextMin(curSet, roomsInCurSet, pathIter, foundSets);
         Set bestSet = Collections.min(foundSets, Set.byEfficiency);
         bestSet.print();
@@ -66,7 +62,7 @@ class SetFinder
             contains = false;
             for (Room r : roomsInCurSet)
             {
-                if (r.getId() != Farm.start && r.getId() != Farm.end)
+                if (r != Farm.getStart() && r != Farm.getEnd())
                     if (contains = p.getPathRooms().contains(r))
                         break ;
             }

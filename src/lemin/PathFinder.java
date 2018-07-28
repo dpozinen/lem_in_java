@@ -7,22 +7,22 @@ class  PathFinder
     void findAllPaths() // DFS
     {
         ArrayList <Room> curPath = new ArrayList<>();
-        Room curRoom = Farm.roomList.get(Farm.start);
+        Room curRoom = Farm.getStart();
         curPath.add(curRoom);
         findPath(curRoom, curPath);
     }
     void findPath(Room curRoom, ArrayList <Room> curPath)
     {
-        if (curRoom.getId() == Farm.end)
+        if (curRoom.equals(Farm.getEnd()))
         {
             ArrayList <Room> fullPath = new ArrayList<>(curPath);
-            Farm.pathList.add(new Path(fullPath.size(), fullPath));
+            Farm.getPathList().add(new Path(fullPath.size(), fullPath));
             return ;
         }
         int i = 0;
-        while (Farm.roomList.get(i) != curRoom)
+        while (Farm.getRoomList().get(i) != curRoom)
             i++;
-        ArrayList <Room> curRoomLinks = Farm.roomList.get(i).getLinks();
+        ArrayList <Room> curRoomLinks = Farm.getRoomList().get(i).getLinks();
         for (Room r : curRoomLinks)
         {
             if (!curPath.contains(r))

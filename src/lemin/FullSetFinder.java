@@ -16,7 +16,7 @@ class FullSetFinder
             pathIds[i] = i;
         curSet.makeByPathIds(pathIds);
         for (int i = 0; i < curSetSize; i++)
-            maxCombSum += Farm.pathList.size() - i - 1;
+            maxCombSum += Farm.getPathList().size() - i - 1;
         while (IntStream.of(pathIds).sum() < maxCombSum - 1)
         {
             bestSet = new Set(curSet);
@@ -34,14 +34,14 @@ class FullSetFinder
     }
     boolean     checkIds(int[] pathIds)
     {
-        for (int i = 0; i < pathIds.length; i++) // go through paths
+        for (int i = 0; i < pathIds.length; i++)
         {
-            if (pathIds[i] >= Farm.pathList.size() - 1)
+            if (pathIds[i] >= Farm.getPathList().size() - 1)
             {
                 if (!orderIds(pathIds, i))
                     return false;
             }
-            else if (i == pathIds.length - 1 && pathIds[i] + 1 < Farm.pathList.size()) // if it`s the last elem
+            else if (i == pathIds.length - 1 && pathIds[i] + 1 < Farm.getPathList().size()) // if it`s the last elem
                 pathIds[i]++;
         }
         return true;
@@ -67,13 +67,13 @@ class FullSetFinder
             pathIds[i]++;
             return true;
         }
-        if (pathIds[i - 1] + 1 < Farm.pathList.size())
+        if (pathIds[i - 1] + 1 < Farm.getPathList().size())
             pathIds[i - 1]++;
         else
             return checkIds(pathIds);
         while (i < pathIds.length)
         {
-            if (pathIds[i - 1] + 1 < Farm.pathList.size())
+            if (pathIds[i - 1] + 1 < Farm.getPathList().size())
                 pathIds[i] = pathIds[i - 1] + 1;
             i++;
         }

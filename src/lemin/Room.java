@@ -6,14 +6,12 @@ import java.util.ArrayList;
 class Room
 {
     // private int     antsInRoom; not used yet
-    private int     id;
     private String  name;
     private ArrayList <Room> links = new ArrayList<>();
 
-    Room(String name, int id)
+    Room(String name)
     {
         this.name = name;
-        this.id = id;
     }
     @Override
     public String toString() {
@@ -21,14 +19,14 @@ class Room
     }
     static boolean isRoomInList(String s)
     {
-        for (Room r : Farm.roomList)
+        for (Room r : Farm.getRoomList())
             if (r.name.equals(s))
                 return true;
         return false;
     }
     static Room findRoomByName(String s)
     {
-        for (Room r : Farm.roomList)
+        for (Room r : Farm.getRoomList())
             if (r.name.equals(s))
                 return r;
         return null;
@@ -55,9 +53,6 @@ class Room
             String rName = matcher.group(0);
             return rName;
         }
-    }
-    public int getId() {
-        return id;
     }
     public ArrayList<Room> getLinks() {
         return links;
