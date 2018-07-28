@@ -1,17 +1,16 @@
 package lemin;
 
-// import java.util.*;
-
 class Lemin
 {
     public static void main(String []args)
     {
         Farm antFarm = new Farm();
-        AddInput addInput = new AddInput();
-        addInput.read();
+        Reader addInput = new Reader();
+        addInput.readInput();
         PathFinder pathFinder = new PathFinder();
         pathFinder.findAllPaths();
-        pathFinder.chooseBestPathSet();
-        // antFarm.print(0);
+        SetFinder setFinder = new SetFinder();
+        setFinder.chooseBestPathSet();
+        // antFarm.print(2);
     }
 }

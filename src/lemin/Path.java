@@ -5,9 +5,9 @@ import java.util.ArrayList;
 
 class Path
 {
-    int id;
-    int length;
-    ArrayList<Room> pathRooms;
+    private int id;
+    private int length;
+    private ArrayList<Room> pathRooms;
 
     Path (int length, ArrayList<Room> pathRooms)
     {
@@ -31,4 +31,13 @@ class Path
             return one.length - two.length;
         }
     };
+    public int getId() {
+        return id;
+    }
+    public int getLength() {
+        return length;
+    }
+    public ArrayList<Room> getPathRooms() {
+        return pathRooms;
+    }
 }

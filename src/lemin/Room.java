@@ -1,12 +1,14 @@
 package lemin;
 
 import java.util.regex.*;
+import java.util.ArrayList;
 
 class Room
 {
-    int     antsInRoom;
-    int     id;
-    String  name;
+    // private int     antsInRoom; not used yet
+    private int     id;
+    private String  name;
+    private ArrayList <Room> links = new ArrayList<>();
 
     Room(String name, int id)
     {
@@ -53,5 +55,14 @@ class Room
             String rName = matcher.group(0);
             return rName;
         }
+    }
+    public int getId() {
+        return id;
+    }
+    public ArrayList<Room> getLinks() {
+        return links;
+    }
+    public String getName() {
+        return name;
     }
 }

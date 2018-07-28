@@ -1,10 +1,9 @@
 package lemin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
-class FullPathFinder
+class FullSetFinder
 {
     boolean fullFind(int curSetSize, ArrayList <Set> setsFound)
     {
@@ -15,13 +14,13 @@ class FullPathFinder
 
         for (int i = 0; i < curSetSize; i++)
             pathIds[i] = i;
-        curSet.makeByPathIds(pathIds, curSet);
+        curSet.makeByPathIds(pathIds);
         for (int i = 0; i < curSetSize; i++)
             maxCombSum += Farm.pathList.size() - i - 1;
         while (IntStream.of(pathIds).sum() < maxCombSum - 1)
         {
             bestSet = new Set(curSet);
-            while (bestSet.getLength() <= curSet.getLength()) // sum of generatedSet is bigger than bestSet
+            while (bestSet.getLength() <= curSet.getLength())
             {
                 if (!getNextPathIDs(pathIds, curSet) || !checkIds(pathIds))
                     break ;
@@ -29,7 +28,7 @@ class FullPathFinder
         }
         if (bestSet.pathsIntersect() == -1)
             setsFound.add(bestSet);
-        if (curSetSize == 3)
+        if (curSetSize == 6)
             return false;
         return true;
     }
@@ -49,10 +48,8 @@ class FullPathFinder
     }
     boolean     getNextPathIDs(int[] pathIds, Set curSet)
     {
-        curSet = curSet.makeByPathIds(pathIds, curSet); // generate Set
-        if (curSet == null)
-            return false;
-        int i = curSet.pathsIntersect(); // check if paths in set intersect and get the path ID that intersects
+        curSet.makeByPathIds(pathIds);
+        int i = curSet.pathsIntersect();
         if (i >= 0)
         {
             if (!orderIds(pathIds, i + 1))
@@ -65,7 +62,7 @@ class FullPathFinder
     {
         if (i == 0)
             return false;
-        if (pathIds.length == 1) // if has one elem, increase to over bounds, it will be catched
+        if (pathIds.length == 1)
         {
             pathIds[i]++;
             return true;

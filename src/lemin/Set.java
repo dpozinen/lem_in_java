@@ -5,18 +5,10 @@ import java.util.Comparator;
 
 class Set
 {
-    ArrayList <Path> setPaths = new ArrayList<>();
+    private ArrayList <Path> setPaths = new ArrayList<>();
     private int efficiency;
     private int length;
 
-    void    print()
-    {
-        for (Path p : setPaths)
-            p.print();
-        for (int i = 0; i < 10; i++)
-            System.out.print('-');
-        System.out.println();
-    }
     public Set(){
     }
     public Set(Set other)
@@ -26,8 +18,10 @@ class Set
         for (Path p : other.setPaths)
             this.setPaths.add(p);
     }
-    public int  getLength()
-    {
+    public ArrayList<Path> getSetPaths() {
+        return setPaths;
+    }
+    public int  getLength(){
         return length;
     }
     int     pathsIntersect()
@@ -35,34 +29,32 @@ class Set
         ArrayList <Room> roomsInCurSet = new ArrayList<>();
 
         for (Path p : setPaths)
-            for (Room r : p.pathRooms)
-                if (r.id != Farm.start && r.id != Farm.end)
+            for (Room r : p.getPathRooms())
+                if (r.getId() != Farm.start && r.getId() != Farm.end)
                     if (roomsInCurSet.contains(r))
                         return setPaths.indexOf(p);
                     else
                         roomsInCurSet.add(r);
         return -1;
     }
-    Set     makeByPathIds(int[] pathIds, Set curSet) // TODO: change so that takes only pathIds
+    void     makeByPathIds(int[] pathIds)
     {
-        curSet.setPaths.clear();
+        setPaths.clear();
         for (int i : pathIds)
         {
             Path p = Farm.pathList.get(i);
-            curSet.setPaths.add(p);
+            setPaths.add(p);
         }
         countLength();
-        return curSet;
     }
-    void    countEfficiency()
-    {
+    void    countEfficiency(){ // TODO
         efficiency = 0;
     }
     void    countLength()
     {
         length = 0;
         for (Path p : setPaths)
-            length += p.length;
+            length += p.getLength();
     }
     public static Comparator<Set> byEfficiency = new Comparator<Set>() {
         public int compare(Set one, Set two)
@@ -74,4 +66,12 @@ class Set
             return 0;
         }
     };
+    void    print()
+    {
+        for (Path p : setPaths)
+            p.print();
+        for (int i = 0; i < 10; i++)
+            System.out.print('-');
+        System.out.println();
+    }
 }

@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class AddInput
+class Reader
 {
-    void read()
+    void readInput()
     {
         try {
             File        file = new File("S:\\Code\\Lem_in\\tests\\test.txt");
@@ -61,20 +61,16 @@ class AddInput
     {
         String  roomOne = Room.extractName(s, 1);
         String  roomTwo = Room.extractName(s, 2);
-        Room    r;
 
-        if (Farm.linkList.size() == 0)
-            Farm.fillLinkList();
-        for (Link l : Farm.linkList)
+        for (Room r : Farm.roomList)
         {
-            r = l.mainRoom;
             int rNum = 0;
-            if (r.name.equals(roomOne))
+            if (r.getName().equals(roomOne))
                 rNum = 1;
-            if (r.name.equals(roomTwo))
+            if (r.getName().equals(roomTwo))
                 rNum = 2;
             if (rNum > 0)
-                l.links.add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
+                r.getLinks().add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
         }
     }
     boolean addCommand(String s, int flag, Scanner sc)

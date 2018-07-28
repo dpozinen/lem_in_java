@@ -28,13 +28,13 @@ class Validate
     }
     boolean isStart(String s)
     {
-        if (Pattern.matches("##start", s))
+        if (Pattern.matches("^##start$", s))
            return true;
         return false;
     }
     boolean isEnd(String s)
     {
-        if (Pattern.matches("##end", s))
+        if (Pattern.matches("^##end$", s))
            return true;
         return false;
     }
