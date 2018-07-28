@@ -20,7 +20,7 @@ class Reader
         }
         catch (FileNotFoundException f)
         {
-            System.out.println("File doesn't exist. Continue Y/N?");
+            System.out.println("File doesn't exist. Try again Y/N?");
             sc.nextLine();
             if (sc.nextLine().equals("Y"))
                 return readFile();
