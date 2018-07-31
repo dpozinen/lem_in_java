@@ -16,6 +16,7 @@ class Validate
             return InputType.END;
         return null;
     }
+
     boolean isRoom(String s)
     {
         if (Pattern.matches("^\\w+[ ]\\d+[ ]\\d+$", s))
@@ -26,24 +27,28 @@ class Validate
         }
         return false;
     }
+
     boolean isStart(String s)
     {
         if (Pattern.matches("^##start$", s))
            return true;
         return false;
     }
+
     boolean isEnd(String s)
     {
         if (Pattern.matches("^##end$", s))
            return true;
         return false;
     }
+
     boolean isComment(String s)
     {
         if (Pattern.matches("^[#].*", s))
             return true;
         return false;
     }
+
     boolean isLink(String s)
     {
         if (Pattern.matches("^\\w+[-]\\w+$", s))

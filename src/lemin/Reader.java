@@ -29,6 +29,7 @@ class Reader
         }
         return sc;
     }
+
     void readInput()
     {
         Validate    val = new Validate();
@@ -53,6 +54,7 @@ class Reader
         }
         sc.close();
     }
+
     boolean add(InputType type, String s, Scanner sc)
     {
         if (type == InputType.ROOM)
@@ -64,12 +66,14 @@ class Reader
                 return false;
         return true;
     }
+
     void addRoom(String s)
     {
         String roomName = Room.extractName(s, 0);
         Room room = new Room(roomName);
         Farm.getRoomList().add(room);
     }
+
     void addLink(String s)
     {
         String  roomOne = Room.extractName(s, 1);
@@ -90,6 +94,7 @@ class Reader
             }
         }
     }
+
     boolean addCommand(InputType type, Scanner sc)
     {
         String  roomLine = sc.nextLine();

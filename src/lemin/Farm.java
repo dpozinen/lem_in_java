@@ -21,6 +21,7 @@ class Farm
         SetFinder setFinder = new SetFinder();
         setFinder.chooseBestPathSet();
     }
+
     void    print(int what)
     {
         System.out.println();
@@ -52,36 +53,47 @@ class Farm
                 s.print();
             }
     }
+
     public static int getAnts() {
         return ants;
     }
+
     public static Room getEnd() {
         return end;
     }
+
     public static ArrayList<Path> getPathList() {
         return pathList;
     }
+
     public static ArrayList<Room> getRoomList() {
         return roomList;
     }
+
     public static ArrayList<Set> getSetsFound() {
         return setsFound;
     }
+
     public static Room getStart() {
         return start;
     }
+
     public static boolean getQuickFind() {
         return quickFind;
     }
+
     public static void setStart(Room start) {
         Farm.start = start;
     }
+
     public static void setEnd(Room end) {
         Farm.end = end;
     }
+
     public static void setAnts(int ants) {
         Farm.ants = ants;
     }
+
     public static void setSetsFound(ArrayList<Set> setsFound) {
         Farm.setsFound = setsFound;
     }

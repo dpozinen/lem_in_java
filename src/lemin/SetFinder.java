@@ -22,6 +22,7 @@ class SetFinder
             Farm.setSetsFound(setsFound);
         }
     }
+
     void quickFind()
     {
         Set curSet = new Set();
@@ -35,6 +36,7 @@ class SetFinder
         Set bestSet = Collections.min(foundSets, Set.byEfficiency);
         bestSet.print();
     }
+
     void findNextMin(Set curSet,  ArrayList <Room> roomsInCurSet, Iterator <Path> pathIter, ArrayList <Set> foundSets)
     {
         Path newSetPath = null;
@@ -51,7 +53,8 @@ class SetFinder
         foundSets.add(curSet);
         findNextMin(curSet, roomsInCurSet, pathIter, foundSets);
     }
-    Path getNotIntersect(Path newSetPath, ArrayList <Room> roomsInCurSet, Iterator <Path> pathIter)
+
+    Path    getNotIntersect(Path newSetPath, ArrayList <Room> roomsInCurSet, Iterator <Path> pathIter)
     {
         Path    p;
         boolean contains;

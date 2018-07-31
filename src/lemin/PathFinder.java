@@ -11,6 +11,7 @@ class  PathFinder
         curPath.add(curRoom);
         findPath(curRoom, curPath);
     }
+
     void findPath(Room curRoom, ArrayList <Room> curPath)
     {
         if (curRoom.equals(Farm.getEnd()))

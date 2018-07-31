@@ -9,14 +9,15 @@ class Room
     private String  name;
     private ArrayList <Room> links = null;
 
-    Room(String name)
-    {
+    Room(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
         return name;
     }
+
     static boolean isRoomInList(String s)
     {
         for (Room r : Farm.getRoomList())
@@ -24,6 +25,7 @@ class Room
                 return true;
         return false;
     }
+
     static Room findRoomByName(String s)
     {
         for (Room r : Farm.getRoomList())
@@ -31,6 +33,7 @@ class Room
                 return r;
         return null;
     }
+
     static String extractName(String s, int link)
     {
         if (link == 0)
@@ -54,12 +57,15 @@ class Room
             return rName;
         }
     }
+
     public void   initLinks() {
         links = new ArrayList <>(1);
     }
+
     public ArrayList<Room> getLinks() {
         return links;
     }
+
     public String getName() {
         return name;
     }

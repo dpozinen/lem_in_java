@@ -13,6 +13,7 @@ class Path
         this.length = length;
         this.pathRooms = pathRooms;
     }
+
     void print()
     {
         for (Room r : pathRooms)
@@ -23,6 +24,7 @@ class Path
         }
         System.out.println();
     }
+
     public static Comparator<Path> bySizeAsc = new Comparator<Path>()
     {
         public int compare(Path one, Path two)
@@ -30,9 +32,11 @@ class Path
             return one.length - two.length;
         }
     };
+
     public int getLength() {
         return length;
     }
+
     public ArrayList<Room> getPathRooms() {
         return pathRooms;
     }

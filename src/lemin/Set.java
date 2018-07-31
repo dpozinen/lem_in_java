@@ -11,6 +11,7 @@ class Set
 
     public Set(){
     }
+
     public Set(Set other)
     {
         this.efficiency = other.efficiency;
@@ -18,12 +19,15 @@ class Set
         for (Path p : other.setPaths)
             this.setPaths.add(p);
     }
+
     public ArrayList<Path> getSetPaths() {
         return setPaths;
     }
+
     public int  getLength(){
         return length;
     }
+
     int     pathsIntersect()
     {
         ArrayList <Room> roomsInCurSet = new ArrayList<>();
@@ -37,6 +41,7 @@ class Set
                         roomsInCurSet.add(r);
         return -1;
     }
+
     void     makeByPathIds(int[] pathIds)
     {
         setPaths.clear();
@@ -47,15 +52,18 @@ class Set
         }
         countLength();
     }
+
     void    countEfficiency(){ // TODO
         efficiency = 0;
     }
+
     void    countLength()
     {
         length = 0;
         for (Path p : setPaths)
             length += p.getLength();
     }
+
     public static Comparator<Set> byEfficiency = new Comparator<Set>() {
         public int compare(Set one, Set two)
         {
@@ -66,6 +74,7 @@ class Set
             return 0;
         }
     };
+
     void    print()
     {
         for (Path p : setPaths)

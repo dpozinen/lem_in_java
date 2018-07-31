@@ -32,6 +32,7 @@ class FullSetFinder
             return false;
         return true;
     }
+
     boolean     checkIds(int[] pathIds)
     {
         for (int i = 0; i < pathIds.length; i++)
@@ -46,6 +47,7 @@ class FullSetFinder
         }
         return true;
     }
+
     boolean     getNextPathIDs(int[] pathIds, Set curSet)
     {
         curSet.makeByPathIds(pathIds);
@@ -58,6 +60,7 @@ class FullSetFinder
         }
         return true;
     }
+
     boolean     orderIds(int[] pathIds, int i) // if order at intersect, i = i + 1
     {
         if (i == 0)
