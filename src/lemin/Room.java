@@ -7,7 +7,7 @@ class Room
 {
     // private int     antsInRoom; not used yet
     private String  name;
-    private ArrayList <Room> links = new ArrayList<>();
+    private ArrayList <Room> links = null;
 
     Room(String name)
     {
@@ -53,6 +53,9 @@ class Room
             String rName = matcher.group(0);
             return rName;
         }
+    }
+    public void   initLinks() {
+        links = new ArrayList <>(1);
     }
     public ArrayList<Room> getLinks() {
         return links;

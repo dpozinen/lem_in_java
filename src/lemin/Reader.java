@@ -83,7 +83,11 @@ class Reader
             if (r.getName().equals(roomTwo))
                 rNum = 2;
             if (rNum > 0)
+            {
+                if (r.getLinks() == null)
+                    r.initLinks();
                 r.getLinks().add(Room.findRoomByName(rNum == 1 ? roomTwo : roomOne));
+            }
         }
     }
     boolean addCommand(InputType type, Scanner sc)
