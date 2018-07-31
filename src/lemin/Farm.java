@@ -12,7 +12,16 @@ class Farm
     private static ArrayList <Path> pathList = new ArrayList<>();
     private static ArrayList <Set> setsFound;
 
-    void print(int what)
+    void    execute()
+    {
+        Reader reader = new Reader();
+        reader.readInput();
+        PathFinder pathFinder = new PathFinder();
+        pathFinder.findAllPaths();
+        SetFinder setFinder = new SetFinder();
+        setFinder.chooseBestPathSet();
+    }
+    void    print(int what)
     {
         System.out.println();
         System.out.println("Ants count: "+ ants);
