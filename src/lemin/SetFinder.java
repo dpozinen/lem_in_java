@@ -30,7 +30,7 @@ class SetFinder
         ArrayList <Room> roomsInCurSet = new ArrayList<>();
 
         Collections.sort(Farm.getPathList(), Path.bySizeAsc);
-        curSet.getSetPaths().add(Farm.getPathList().get(0));
+        curSet.getpaths().add(Farm.getPathList().get(0));
         Iterator <Path> pathIter = Farm.getPathList().iterator();
         findNextMin(curSet, roomsInCurSet, pathIter, foundSets);
         Set bestSet = Collections.min(foundSets, Set.byEfficiency);
@@ -41,14 +41,14 @@ class SetFinder
     {
         Path newSetPath = null;
 
-        for (Path p : curSet.getSetPaths())
+        for (Path p : curSet.getpaths())
             for (Room r : p.getPathRooms())
                 if (!roomsInCurSet.contains(r))
                     roomsInCurSet.add(r);
         newSetPath = getNotIntersect(newSetPath, roomsInCurSet, pathIter);
         if (newSetPath == null)
             return ;
-        curSet.getSetPaths().add(newSetPath);
+        curSet.getpaths().add(newSetPath);
         curSet.countEfficiency();
         foundSets.add(curSet);
         findNextMin(curSet, roomsInCurSet, pathIter, foundSets);

@@ -18,6 +18,7 @@ class Farm
         reader.readInput();
         PathFinder pathFinder = new PathFinder();
         pathFinder.findAllPaths();
+        System.out.println(pathList.size());
         SetFinder setFinder = new SetFinder();
         setFinder.chooseBestPathSet();
     }

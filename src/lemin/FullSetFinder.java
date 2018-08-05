@@ -28,7 +28,7 @@ class FullSetFinder
         }
         if (bestSet.pathsIntersect() == -1)
             setsFound.add(bestSet);
-        if (curSetSize == 6)
+        if (curSetSize == 2)
             return false;
         return true;
     }
@@ -52,11 +52,12 @@ class FullSetFinder
     {
         curSet.makeByPathIds(pathIds);
         int i = curSet.pathsIntersect();
-        if (i >= 0)
+        while (i >= 0)
         {
             if (!orderIds(pathIds, i + 1))
                 return false;
-            return getNextPathIDs(pathIds, curSet);
+            curSet.makeByPathIds(pathIds);
+            i = curSet.pathsIntersect();
         }
         return true;
     }
